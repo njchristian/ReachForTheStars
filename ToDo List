@@ -1,0 +1,14 @@
+Front End:
+  - Home Page
+  - Location View Template
+  -Algorithm at Work Page
+    - javascript to support operations
+  
+"Back End": (since we don't really have a "server" side - we just give the page the language models)
+  - Finish classes for docment collection model
+  - Identify a list of businesses with few reviews
+  - Make user models for reviewers of these locations
+    - User model including language statistics and overall rating average
+    
+  - implement basic Naive Bayes and evaluate
+
