@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html style="height: 95%">
+<html style="height: 96%; margin: auto;">
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"> </script>
     <script> 
@@ -12,7 +12,7 @@
             h1 {
                 line-height: 80px;
                 text-shadow: 3px 3px 10px #000000;
-                background-color: #686868;
+                background-color: #404040;
                 border: groove;
                 border-color: #5CB3FF;
                 border-width: 10px;
@@ -20,9 +20,9 @@
                 font-size: 250%;
             }
             div {
-                line-height: 80px;
+                line-height: 40px;
                 text-shadow: 3px 3px 10px #000000;
-                background-color: #686868;
+                background-color: #404040;
                 border: groove;
                 border-color: #5CB3FF;
                 border-width: 10px;
@@ -34,13 +34,13 @@
                 font-size: 18px;
                 color: #5CB3FF;
             }
-                        table, tr, td, th {
+            table, tr, td, th {
                 border: 1px solid #5CB3FF;
                 border-collapse: collapse;
                 font-family: verdana;
                 color: #5CB3FF;
                 text-shadow: 1px 1px 5px #000000;
-                background-color: #686868
+                background-color: #404040
             }
             table {
                 width: 100%;
@@ -58,15 +58,15 @@
         </style>
     </head>
 
-    <body style="height: 100%; background-color:#C0C0C0">
+    <body style="height: 100%; background-color:#808080">
     
-        <h1 id="header" align="center"> 
+        <h1 id="header" style="margin: auto; text-align:center;">
             <font face="verdana" color="#5CB3FF"> 
                 Business User Model
             </font> 
         </h1>
-    
-        <div id="business_buttons" align="center">
+    <br>
+        <div id="business_buttons" style="margin: auto; text-align:center">
             <input type="radio" name="editList" id="1" onclick="update_header(id); update_review_count(id); update_yelp_score(id); update_semantic_score(id); populate_reviews(id);"/>
             <label for="1">Business 1</label>
             
@@ -100,7 +100,7 @@
      
         <br>
      
-        <div id="business_header" align="center" style="color:#5CB3FF; font-family:verdana; font-size:20px; line-height:40px;">
+        <div id="business_header" style="color:#5CB3FF; font-family:verdana; font-size:20px; line-height:40px; margin: auto; text-align:center">
                 Business Title:
                 <business_info id="business_title">
                 </business_info>
@@ -120,10 +120,8 @@
         
         <br>
         
-        <div id="business_reviews" align="center" style="color:#5CB3FF; font-family:verdana; font-size:20px; line-height:40px; height:35%; overflow-y: auto">
-
-            Select one of the radio buttons above to populate this table!
-        
+        <div id="business_reviews" style="color:#5CB3FF; font-family:verdana; font-size:20px; line-height:40px; height:50%; overflow-y: auto; margin: auto; text-align:center">
+            Select one of the radio buttons above to populate this table!        
         </div>
 
         <script>
@@ -261,9 +259,9 @@
                 
                 for(var i = 0; i < current_array.length; i++) {
                              
-                    content += '<tr><td width=50% align="center">' + current_array[i].review_text + '</td>';
-                    content += '<td width=25% align="center">Yelp Score: ' + current_array[i].yelp_score + '</td>';
-                    content += '<td width=25% align="center">Semantic Score: ' + current_array[i].semantic_score + '</td></tr>';
+                    content += '<tr><td width=50% style="text-align:center">' + current_array[i].review_text + '</td>';
+                    content += '<td width=25% style="text-align:center">Yelp Score: ' + current_array[i].yelp_score + '</td>';
+                    content += '<td width=25% style="text-align:center">Semantic Score: ' + current_array[i].semantic_score + '</td></tr>';
                 }
       
                 content += '</table>';
