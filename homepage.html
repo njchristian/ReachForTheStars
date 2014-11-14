@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html style="height: 95%">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"> </script>
+    <script> 
+        peer_teachers = [];
+        dockets = [];
+    </script>
+    <head>
+        <style>
+            h1 {
+                line-height: 80px;
+                text-shadow: 3px 3px 10px #000000;
+                background-color: #404040;
+                border: groove;
+                border-color: #5CB3FF;
+                border-width: 10px;
+                border-collapse: collapse;
+                font-size: 450%;
+            }
+            div {
+                line-height: 20px;
+                text-shadow: 3px 3px 10px #000000;
+                background-color: #404040;
+                border: groove;
+                border-color: #5CB3FF;
+                border-width: 10px;
+                border-collapse: collapse;
+                font-size: 250%;
+                position: relative;
+            }
+            button {
+                
+                font-family:verdana;            
+                font-size: 150%;
+                color: #404040;
+                background-color: #5CB3FF;            
+                
+                width: 50%;
+                height: 75%;
+                overflow: auto;
+                margin: auto;
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+            }
+            <!-- This code was found at http://experiments.wemakesites.net/css3-rating-stars-with-selection.html -->
+			.acidjs-rating-stars,
+			.acidjs-rating-stars label::before
+			{
+				display: inline-block;
+			}
+			.acidjs-rating-stars label:hover,
+			.acidjs-rating-stars label:hover ~ label
+			{
+				color: #5CB3FF;
+			}
+			 
+			.acidjs-rating-stars *
+			{
+				margin: 0;
+				padding: 0;
+			}
+			 
+			.acidjs-rating-stars input
+			{
+				display: none;
+			}
+			 
+			.acidjs-rating-stars
+			{
+				unicode-bidi: bidi-override;
+				direction: rtl;
+			}
+			 
+			.acidjs-rating-stars label
+			{
+				color: #ccc;
+			}
+			 
+			.acidjs-rating-stars label::before
+			{
+				content: "\2605";
+				width: 18px;
+				line-height: 10px;
+				text-align: center;
+				font-size: 32px;
+				cursor: pointer;
+			}
+			 
+			.acidjs-rating-stars input:checked ~ label
+			{
+				color: #5CB3FF;
+			}
+			 
+			.acidjs-rating-disabled
+			{
+				opacity: .50;
+				 
+				-webkit-pointer-events: none;
+				-moz-pointer-events: none;
+				pointer-events: none;
+			}
+			<!-- End code found at http://experiments.wemakesites.net/css3-rating-stars-with-selection.html -->
+        </style>
+    </head>
+
+    <body style="height: 100%; background-color:#808080">
+    
+        <h1 id="header" style="margin: auto; text-align:center;"> 
+            <font face="verdana" color="#5CB3FF"> 
+                Reach For The Stars
+            </font> 
+        </h1>
+		
+        <br>
+
+        <div style="height: 35%; text-align:center;">
+                <button type="button" style="vertical-align:middle;">Check Out Example Businesses!</button>
+        </div>
+        
+        <br>
+        
+        <div class="acidjs-rating-stars" style="text-align:center;">
+                <br>
+				<form>
+					<input type="radio" name="group-1" id="group-1-0"/><label for="group-1-0"></label><!--
+					--><input type="radio" name="group-1" id="group-1-1"/><label for="group-1-1"></label><!--
+					--><input type="radio" name="group-1" id="group-1-2"/><label for="group-1-2"></label><!--
+					--><input type="radio" name="group-1" id="group-1-3"/><label for="group-1-3"></label><!--
+					--><input type="radio" name="group-1" id="group-1-4"/><label for="group-1-4"></label><!--
+                    --><input type="radio" name="group-1" id="group-1-5"/><label for="group-1-5"></label><!--
+					--><input type="radio" name="group-1" id="group-1-6"/><label for="group-1-6"></label><!--
+					--><input type="radio" name="group-1" id="group-1-7"/><label for="group-1-7"></label><!--
+					--><input type="radio" name="group-1" id="group-1-8"/><label for="group-1-8"></label><!--
+                    --><input type="radio" name="group-1" id="group-1-9"/><label for="group-1-9"></label><!--
+					--><input type="radio" name="group-1" id="group-1-10"/><label for="group-1-10"></label><!--
+					--><input type="radio" name="group-1" id="group-1-11"/><label for="group-11"></label><!--
+					--><input type="radio" name="group-1" id="group-1-12"/><label for="group-1-12"></label><!--
+                    --><input type="radio" name="group-1" id="group-1-13"/><label for="group-1-13"></label><!--
+					--><input type="radio" name="group-1" id="group-1-14"/><label for="group-1-14"></label><!--
+					--><input type="radio" name="group-1" id="group-1-15"/><label for="group-1-15"></label><!--
+					--><input type="radio" name="group-1" id="group-1-16"/><label for="group-1-16"></label>
+				</form>
+                <br>
+        </div>
+        
+        <br>
+                
+        <div style="height: 35%; text-align:center;">
+                <button type="button">Build Your Own Profile!</button>
+        </div>
+
+    </body>
+</html>
