@@ -7,14 +7,14 @@ def pWordIn(word, wordClass, wordCountForClass):
     
 def initWordCounts:
     
-    infilename = "collection"
+    infilename = "collection/"
     
     classes = []
     totals = []
     
     #create a different count for each class
     for i in range(0..5):
-        cs = "_class" + str(i)
+        cs = "class=" + str(i)
         f=open(infilename + cs,'r')
         total = 0
         
@@ -29,7 +29,7 @@ def initWordCounts:
         
 def initWordCountsForUser(uid):
     
-    infilename = "/uid/uid"
+    infilename = "userProfiles/uid/"
     
     classes = []
     totals = []
