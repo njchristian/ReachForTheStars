@@ -6,6 +6,9 @@ Classify Yelp Reviews By Star Rating
 To Test the Core Algorithm:
 
 Run "python testCore.py"
+  
+  You will need 'targetReviews.txt' and 'businessReviewMap.txt', as well as the coreNaiveBayes.py file.
 
-You can change the review, and uid (user id) variables to try different reviews.
-  To do this pick a review from target reviews. In front of the review is the review_id. You can match these to the appropiate user id manually in businessReviewMap.txt, where the values are, in order, business_id, review_id, user_id.
+This will run over 10 arbitrary businesses we identified with low numbers of reviews. It does each one independently right now (ie. super ineffecient), so it will take a while. 
+
+If you want to just run over one review, instead of running main() in testCore.py, run simpleTest().
