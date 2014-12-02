@@ -1,12 +1,10 @@
-
-window.onload = function(){
-    NaiveBayes.initWordCounts();
-}
-
 var wordClasses = [];
 var totalCounts = [];
 
 var starDistribution = [.1, .09, .15, .3, .36];
+
+var userWordClasses = [{},{},{},{},{}];
+var userTotalCounts = [0,0,0,0,0];
 
 function readTextFile(file, callback)
 {
@@ -19,11 +17,15 @@ function readTextFile(file, callback)
             if(rawFile.status === 200 || rawFile.status == 0)
             {
                 var allText = rawFile.responseText;
-                callback(allText)l
+                callback(allText);
             }
         }
     }
     rawFile.send();
+}
+
+NaiveBayes = function(){
+
 }
 
 NaiveBayes.pWordIn = function(word, wordClass, wordCountForClass){
@@ -35,33 +37,6 @@ NaiveBayes.pWordIn = function(word, wordClass, wordCountForClass){
     return 0;
 }  
 
-NaiveBayes.initWordCounts = function(){
-    
-    var infilename = "collection/";
-    
-    var classes = [];
-    var totals = [];
-    
-    #create a different count for each class
-    for( var i = 0; i < 5; ++i ){
-    
-        cs = "class=" + str(i+1)
-        f=open(infilename + cs,'r')
-        
-        var total = 0;
-        classes.push({});
-        
-        for line in f
-        {
-            var arr = line.split('\s+');
-            classes[i][arr[0]] = parseInt(arr[1]);
-            total = total + parseInt(arr[1]);
-        }
-            
-        totals.push(total);
-    }
-}
-
 
 NaiveBayes.pClassFor = function(classNum, review, wordClass, wordCountForClass){
     
@@ -69,21 +44,21 @@ NaiveBayes.pClassFor = function(classNum, review, wordClass, wordCountForClass){
     
     var wordCounts = []
     
-    var words = review.toLowerCase().split('\w+');
+    var words = review.toLowerCase().split(' ');
     
     for( var i = 0; i < words.length; i++ ){
         
         var word = words[i];
         
-        var wp = CoreNaiveBayes.pWordIn(word, wordClass, wordCountForClass);
+        var wp = NaiveBayes.pWordIn(word, wordClass, wordCountForClass);
         
         if( wp != 0 ){
-            p = p + log(wp);
+            p = p + Math.log(wp);
         }
             
     }
         
-    return p + log(starDistribution[classNum-1]);
+    return p + Math.log(starDistribution[classNum-1]);
 }
     
 NaiveBayes.naiveBayes = function(review){
@@ -98,8 +73,8 @@ NaiveBayes.naiveBayes = function(review){
     
     for( var i = 1; i < 6; ++i ){
     
-        var d = CoreNaiveBayes.pClassFor(i, review, wordClasses[i-1], totalCounts[i-1])
-        var u = CoreNaiveBayes.pClassFor(i, review, userWordClasses[i-1], userTotalCounts[i-1])
+        var d = NaiveBayes.pClassFor(i, review, wordClasses[i-1], totalCounts[i-1])
+        var u = NaiveBayes.pClassFor(i, review, userWordClasses[i-1], userTotalCounts[i-1])
         
         
         var p = alpha * d + (1-alpha) * u;
@@ -112,14 +87,15 @@ NaiveBayes.naiveBayes = function(review){
     var max = classProbabilities[0];
     var i = 0;
     for( var i = 0; i < classProbabilities.length; ++i ){
-        var c = classProbabalities[i];
+        var c = classProbabilities[i];
         if (c > max){
             maxIndex = i;
             max = c;
         }
     }
         
-    return maxIndex + 1;
+    var ele = document.getElementById('w_count');
+    ele.value = maxIndex + 1;   
 }
         
         

@@ -1,21 +1,19 @@
-one_star_words = [];
-two_star_words = [];
-three_star_words = [];
-four_star_words = [];
-five_star_words = [];
-
-var allText = []; // this will be what you want to access
 
 function loadFile(givenID){
-    f1Text = [];
+    var f1Text = {};
+    var total = 0;
     var oFrame = document.getElementById(givenID);
     var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
     var lines = strRawContents.split("\n");
     for(i = 0; i < lines.length; i++) {
         content = lines[i].split(" ");
-        f1Text.push([content[0], content[1]]);
+        f1Text[content[0]] = parseInt(content[1]);
+        total = total + parseInt(content[1]);
     }
-    allText.push(f1Text);
+    wordClasses.push(f1Text);
+    totalCounts.push(total);
+    
+    console.log("Finished loading " + givenID);
 }
 
 function LoadFile1() {
@@ -58,62 +56,14 @@ function update_profile(review_text, semantic_score) {
     var found = 0;
 
     for(i = 0; i < words.length; i++) {
-        if(semantic_score == 1) {
-            for(j = 0; j < one_star_words.length; j++) {
-                if(one_star_words[j][0] == words[i]) {
-                    one_star_words[j][1] = one_star_words[j][1] + 1;
-                    found = 1;
-                }
-            }
-            if(found < 1 && words[i] != "") {
-                one_star_words.push([words[i], 1]);
-            }
-        }
-        if(semantic_score == 2) {
-            for(j = 0; j < two_star_words.length; j++) {
-                if(two_star_words[j][0] == words[i]) {
-                    two_star_words[j][1] = two_star_words[j][1] + 1;
-                    found = 1;
-                }
-            }
-            if(found < 1 && words[i] != "") {
-                two_star_words.push([words[i], 1]);
-            }
-        }
-        if(semantic_score == 3) {
-            for(j = 0; j < three_star_words.length; j++) {
-                if(three_star_words[j][0] == words[i]) {
-                    three_star_words[j][1] = three_star_words[j][1] + 1;
-                    found = 1;
-                }
-            }
-            if(found < 1 && words[i] != "") {
-                three_star_words.push([words[i], 1]);
-            }
-        }
-        if(semantic_score == 4) {
-            for(j = 0; j < four_star_words.length; j++) {
-                if(four_star_words[j][0] == words[i]) {
-                    four_star_words[j][1] = four_star_words[j][1] + 1;
-                    found = 1;
-                }
-            }
-            if(found < 1 && words[i] != "") {
-                four_star_words.push([words[i], 1]);
-            }
-        }
-        if(semantic_score == 5) {
-            for(j = 0; j < five_star_words.length; j++) {
-                if(five_star_words[j][0] == words[i]) {
-                    five_star_words[j][1] = five_star_words[j][1] + 1;
-                    found = 1;
-                }
-            }
-            if(found < 1 && words[i] != "") {
-                five_star_words.push([words[i], 1]);
-            }
+        if( userWordClasses[semantic_score - 1][words[i]] != null ){
+            userWordClasses[semantic_score - 1][words[i]] = userWordClasses[0][words[i]] + 1;
+        }else{
+            userWordClasses[semantic_score - 1][words[i]] = 1;
         }
     }
+    
+    userTotalCounts[semantic_score-1] = userTotalCounts[semantic_score-1] + words.length;
 }
 
 function populate_reviews(review_text, yelp_score, semantic_score) {

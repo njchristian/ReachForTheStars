@@ -4,11 +4,11 @@
     
     <head>
     
-        <iframe id="f1" src="test.txt" onload="LoadFile1();" style="display: none;"></iframe>
-        <iframe id="f2" src="f2.txt" onload="LoadFile2();" style="display: none;"></iframe>
-        <iframe id="f3" src="test.txt" onload="LoadFile3();" style="display: none;"></iframe>
-        <iframe id="f4" src="f4.txt" onload="LoadFile4();" style="display: none;"></iframe>
-        <iframe id="f5" src="f5.txt" onload="LoadFile5();" style="display: none;"></iframe>
+        <iframe id="f1" src="collection/class=1" onload="LoadFile1();" style="display: none;"></iframe>
+        <iframe id="f2" src="collection/class=2" onload="LoadFile2();" style="display: none;"></iframe>
+        <iframe id="f3" src="collection/class=3" onload="LoadFile3();" style="display: none;"></iframe>
+        <iframe id="f4" src="collection/class=4" onload="LoadFile4();" style="display: none;"></iframe>
+        <iframe id="f5" src="collection/class=5" onload="LoadFile5();" style="display: none;"></iframe>
     
         <script src="userModelSupport.js"></script>
         <script src="webNaiveBayes.js"></script>
@@ -135,7 +135,7 @@
         <div id="user_text" style="text-align:center; margin: auto; line-height:20px;">
 			<br>
 			<form>
-				<textarea id="review_text" rows="12" cols = "75" style="background-color:#C0C0C0; color:#000000; font-family:verdana; font-size:14px;border: groove; border-color: #5CB3FF; border-width: 7px; text-align:left;" onfocus="if(this.value == this.defaultValue)this.value='';" onkeyup="wordcount(this.value);">Write your message here!</textarea>
+				<textarea id="review_text" rows="12" cols = "75" style="background-color:#C0C0C0; color:#000000; font-family:verdana; font-size:14px;border: groove; border-color: #5CB3FF; border-width: 7px; text-align:left;" onfocus="if(this.value == this.defaultValue)this.value='';" onkeyup="NaiveBayes.naiveBayes(this.value);">Write your message here!</textarea>
                 <br>
                 <font face="verdana" color="#5CB3FF" style="font-size: 20px;"> 
                     Predicted Score:
