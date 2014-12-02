@@ -3,6 +3,78 @@
 <html style="height: 95%">
     
     <head>
+    
+        <!-- All five files (just replace src) -->
+        <iframe id="f1" src="test.txt" onload="LoadFile1();" style="display: none;"></iframe>
+        <iframe id="f2" src="f2.txt" onload="LoadFile2();" style="display: none;"></iframe>
+        <iframe id="f3" src="test.txt" onload="LoadFile3();" style="display: none;"></iframe>
+        <iframe id="f4" src="f4.txt" onload="LoadFile4();" style="display: none;"></iframe>
+        <iframe id="f5" src="f5.txt" onload="LoadFile5();" style="display: none;"></iframe>
+        
+        <script type="text/javascript">
+        var allText = []; // this will be what you want to access
+        
+        function LoadFile1() {
+            f1Text = [];
+            var oFrame = document.getElementById("f1");
+            var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+            var lines = strRawContents.split("\n");
+            for(i = 0; i < lines.length; i++) {
+                content = lines[i].split(" ");
+                f1Text.push([content[0], content[1]]);
+            }
+            allText.push(f1Text);
+        }
+        
+        function LoadFile2() {
+            f2Text = [];
+            var oFrame = document.getElementById("f2");
+            var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+            var lines = strRawContents.split("\n");
+            for(i = 0; i < lines.length; i++) {
+                content = lines[i].split(" ");
+                f2Text.push([content[0], content[1]]);
+            }
+        }
+        
+        function LoadFile3() {
+            f3Text = [];
+            var oFrame = document.getElementById("f3");
+            var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+            var lines = strRawContents.split("\n");
+            for(i = 0; i < lines.length; i++) {
+                content = lines[i].split(" ");
+                f3Text.push([content[0], content[1]]);
+            }
+            allText.push(f3Text);
+            alert(allText[0]);
+        }
+        
+        function LoadFile4() {
+            f4Text = [];
+            var oFrame = document.getElementById("f4");
+            var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+            var lines = strRawContents.split("\n");
+            for(i = 0; i < lines.length; i++) {
+                content = lines[i].split(" ");
+                f4Text.push([content[0], content[1]]);
+            }
+            allText.push(f4Text);
+        }
+        
+        function LoadFile5() {
+            f5Text = [];
+            var oFrame = document.getElementById("f5");
+            var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+            var lines = strRawContents.split("\n");
+            for(i = 0; i < lines.length; i++) {
+                content = lines[i].split(" ");
+                f5Text.push([content[0], content[1]]);
+            }
+            allText.push(f5Text);
+        }
+        </script>
+        
         <style>
             h1 {
                 line-height: 80px;
@@ -272,6 +344,8 @@
                 document.getElementById('user_reviews').innerHTML=content;
                 
                 update_profile(review_text, semantic_score);
+                
+                alert(allText);
             }
             
             
