@@ -7,11 +7,30 @@ function loadFile(givenID){
     var lines = strRawContents.split("\n");
     for(i = 0; i < lines.length; i++) {
         content = lines[i].split(" ");
+        if( content.length < 2 ) continue;
         f1Text[content[0]] = parseInt(content[1]);
         total = total + parseInt(content[1]);
     }
-    wordClasses.push(f1Text);
-    totalCounts.push(total);
+    var index = 0;
+    switch( givenID ){
+        case "f1":
+            index = 0;
+            break;
+        case "f2":
+            index = 1;
+            break;
+        case "f3":
+            index = 2;
+            break;
+        case "f4":
+            index = 3;
+            break;
+        case "f5":
+            index = 4;
+            break;
+    }
+    wordClasses[index] = f1Text;
+    totalCounts[index] = total;
     
     console.log("Finished loading " + givenID);
 }
@@ -46,18 +65,18 @@ function get_star_count() {
         return 1;
 }
 
-function get_semantic_score() {    
-    return Math.floor(Math.random() * 5) + 1
+function get_semantic_score(text) {  
+    return NaiveBayes.naiveBayes(text);
 }
 
 function update_profile(review_text, semantic_score) {
-    var words = review_text.split(/\W+/);
+    var words = review_text.split(' ');
     
     var found = 0;
 
     for(i = 0; i < words.length; i++) {
         if( userWordClasses[semantic_score - 1][words[i]] != null ){
-            userWordClasses[semantic_score - 1][words[i]] = userWordClasses[0][words[i]] + 1;
+            userWordClasses[semantic_score - 1][words[i]] = userWordClasses[semantic_score - 1][words[i]] + 1;
         }else{
             userWordClasses[semantic_score - 1][words[i]] = 1;
         }
@@ -66,7 +85,8 @@ function update_profile(review_text, semantic_score) {
     userTotalCounts[semantic_score-1] = userTotalCounts[semantic_score-1] + words.length;
 }
 
-function populate_reviews(review_text, yelp_score, semantic_score) {
+function populate_reviews(review_text, yelp_score) {
+    var semantic_score = get_semantic_score(review_text);
     document.getElementById('review_text').value='';
     var content = document.getElementById('user_reviews').innerHTML;
     if(content == "User Profile Currently Empty") {
@@ -77,12 +97,12 @@ function populate_reviews(review_text, yelp_score, semantic_score) {
     }
            
     content += '<tr><td width=50% style="text-align:center">' + review_text + '</td>';
-    content += '<td width=25% style="text-align:center">Yelp Score: ' + yelp_score + '</td>';
-    content += '<td width=25% style="text-align:center">Semantic Score: ' + semantic_score + '</td></tr>';              
+    content += '<td width=25% style="text-align:center">My Score: ' + yelp_score + '</td>';
+    content += '<td width=25% style="text-align:center">Predicted Score: ' + semantic_score + '</td></tr>';              
 
     content += '</table>';
 
     document.getElementById('user_reviews').innerHTML=content;
     
-    update_profile(review_text, semantic_score);
+    update_profile(review_text, yelp_score);
 }

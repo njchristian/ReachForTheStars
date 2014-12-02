@@ -1,5 +1,5 @@
-var wordClasses = [];
-var totalCounts = [];
+var wordClasses = [{},{},{},{},{}];
+var totalCounts = [0,0,0,0,0];
 
 var starDistribution = [.1, .09, .15, .3, .36];
 
@@ -77,7 +77,7 @@ NaiveBayes.naiveBayes = function(review){
         var u = NaiveBayes.pClassFor(i, review, userWordClasses[i-1], userTotalCounts[i-1])
         
         
-        var p = alpha * d + (1-alpha) * u;
+        var p = alpha * Math.exp(d) + (1-alpha) * Math.exp(u);
         
         classProbabilities.push(p);
         
@@ -96,6 +96,8 @@ NaiveBayes.naiveBayes = function(review){
         
     var ele = document.getElementById('w_count');
     ele.value = maxIndex + 1;   
+    
+    return maxIndex + 1;
 }
         
         
