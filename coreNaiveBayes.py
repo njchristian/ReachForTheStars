@@ -61,6 +61,8 @@ class CoreNaiveBayes(object):
     @staticmethod
     def pClassFor(classNum, review, wordClass, wordCountForClass):
         
+        starDistribution = [.1, .09, .15, .3, .36]
+        
         p = 0
         
         wordCounts = []
@@ -72,14 +74,16 @@ class CoreNaiveBayes(object):
             if wp != 0:
                 p = p + math.log(wp)
             
-        return p
-        
+        return p + math.log(starDistribution[classNum-1])
+       
+    @staticmethod
+    def initNB():
+        wordClasses, totalCounts = CoreNaiveBayes.initWordCounts()
+        return wordClasses, totalCounts
         
     #take in a review and reviewer, and return a semantic class!
     @staticmethod
-    def naiveBayes(review, reviewerId):
-        
-        wordClasses, totalCounts = CoreNaiveBayes.initWordCounts()
+    def naiveBayes(review, reviewerId, wordClasses, totalCounts):
         
         userWordClasses, userTotalCounts = CoreNaiveBayes.initWordCountsForUser(reviewerId)
         
