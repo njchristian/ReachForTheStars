@@ -1,5 +1,7 @@
 var wordClasses = [{},{},{},{},{}];
 var totalCounts = [0,0,0,0,0];
+var positiveWords = [];
+var negativeWords = [];
 
 var starDistribution = [.1, .09, .15, .3, .36];
 

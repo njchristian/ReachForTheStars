@@ -51,6 +51,24 @@ function LoadFile5() {
     loadFile("f5");
 }
 
+function LoadPositive() {
+    var oFrame = document.getElementById("f6");
+    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+    var lines = strRawContents.split("\n");
+    for(i = 0; i < lines.length; i++) {
+        positiveWords.push(lines[i]);
+    }
+}
+
+function LoadNegative() {
+    var oFrame = document.getElementById("f7");
+    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+    var lines = strRawContents.split("\n");
+    for(i = 0; i < lines.length; i++) {
+        negativeWords.push(lines[i]);
+    }
+}
+
 
 function get_star_count() {
     if(document.getElementById('group-1-0').checked)
@@ -66,7 +84,23 @@ function get_star_count() {
 }
 
 function get_semantic_score(text) {  
-    return NaiveBayes.naiveBayes(text);
+
+    var filtered_text = "";
+    words = text.split(' ');
+
+    for(i = 0; i < words.length; i++) {
+        if(positiveWords.indexOf(words[i]) != -1) {
+            filtered_text = filtered_text.concat(String(words[i]));
+            filtered_text = filtered_text.concat(" ");
+
+        }
+        if(negativeWords.indexOf(words[i]) != -1) {
+            filtered_text = filtered_text.concat(String(words[i]));
+            filtered_text = filtered_text.concat(" ");
+        }
+    }
+    
+    return NaiveBayes.naiveBayes(filtered_text);
 }
 
 function update_profile(review_text, semantic_score) {
