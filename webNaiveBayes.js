@@ -59,8 +59,8 @@ NaiveBayes.pClassFor = function(classNum, review, wordClass, wordCountForClass){
         }
             
     }
-        
-    return p + Math.log(starDistribution[classNum-1]);
+    return p;   
+    //return p + Math.log(starDistribution[classNum-1]);
 }
     
 NaiveBayes.naiveBayes = function(review){
