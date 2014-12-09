@@ -56,6 +56,8 @@ NaiveBayes.pClassFor = function(classNum, review, wordClass, wordCountForClass){
         
         if( wp != 0 ){
             p = p + Math.log(wp);
+        }else{
+            p-=10;
         }
             
     }
