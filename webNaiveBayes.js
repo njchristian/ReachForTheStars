@@ -77,7 +77,7 @@ NaiveBayes.naiveBayes = function(review){
     
     for( var i = 1; i < 6; ++i ){
     
-        var alpha = 1 - userReviewCount[i-1] * .05;
+        var alpha = 1 - userReviewCounts[i-1] * .05;
         if( alpha < .5 ) alpha = .5;
     
         var d = NaiveBayes.pClassFor(i, review, wordClasses[i-1], totalCounts[i-1])
