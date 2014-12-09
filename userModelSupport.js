@@ -116,6 +116,7 @@ function update_profile(review_text, semantic_score) {
         }
     }
     
+    userReviewCount[semantic_score-1] = userReviewCount[semantic_score-1] + 1;
     userTotalCounts[semantic_score-1] = userTotalCounts[semantic_score-1] + words.length;
 }
 

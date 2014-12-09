@@ -2,6 +2,7 @@ var wordClasses = [{},{},{},{},{}];
 var totalCounts = [0,0,0,0,0];
 var positiveWords = [];
 var negativeWords = [];
+var userReviewCounts = [0,0,0,0,0];
 
 var starDistribution = [.1, .09, .15, .3, .36];
 
@@ -71,11 +72,13 @@ NaiveBayes.naiveBayes = function(review){
     
     //userWordClasses, userTotalCounts = CoreNaiveBayes.initWordCountsForUser(reviewerId)
     
-    var alpha = .5;
     
     var classProbabilities = [];
     
     for( var i = 1; i < 6; ++i ){
+    
+        var alpha = 1 - userReviewCount[i-1] * .05;
+        if( alpha < .5 ) alpha = .5;
     
         var d = NaiveBayes.pClassFor(i, review, wordClasses[i-1], totalCounts[i-1])
         var u = NaiveBayes.pClassFor(i, review, userWordClasses[i-1], userTotalCounts[i-1])
